@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./card.css";
 
 function Card() {
@@ -11,12 +12,8 @@ function Card() {
               A typing game to improve your speed and accuracy.
             </p>
             <div className="d-flex flex-column align-items-center">
-              <button type="button" className="btn btn-outline-success">
-                Start Game
-              </button>
-              <button type="button" className="btn btn-outline-success">
-                Scores
-              </button>
+              <Button name={"Start Game"} />
+              <Button name={"Scores"} />
             </div>
           </div>
         </div>

@@ -14,19 +14,3 @@
     margin: 10px !important;
     width: 300px !important;
 }
-
-button {
-    background-color: #000 !important;
-    color: #00FF00 !important;
-    border: 1px solid #00FF00 !important;
-    border-radius: 5px !important;
-    padding: 5px 10px !important;
-    margin: 5px !important;
-    cursor: pointer !important;
-    width: 100% !important;
-}
-
-button:hover {
-    background-color: #00FF00 !important;
-    color: #000 !important;
-}
