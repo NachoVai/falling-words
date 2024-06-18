@@ -1,16 +1,17 @@
-import CardBody from "../CardBody/CardBody";
+import { ReactNode } from "react";
 import "./card.css";
 
-function Card() {
+type CardProps = {
+  children?: ReactNode;
+};
+
+function Card(props: CardProps) {
+  const { children } = props;
+
   return (
     <>
       <div className="container mt-5" id="menu">
-        <div className="card">
-          <CardBody
-            title={"Falling Words"}
-            description={"A typing game to improve your speed and accuracy."}
-          />
-        </div>
+        <div className="card">{children}</div>
       </div>
     </>
   );
