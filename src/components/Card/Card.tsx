@@ -10,9 +10,7 @@ function Card(props: CardProps) {
 
   return (
     <>
-      <div className="container mt-5" id="menu">
-        <div className="card">{children}</div>
-      </div>
+      <div className="card">{children}</div>
     </>
   );
 }
