@@ -12,13 +12,16 @@ function App() {
     } else if (buttonName === "Scores") {
       console.log("Scores button clicked");
       setView("scores");
+    } else if (buttonName === "Menu") {
+      console.log("Scores button clicked");
+      setView("menu");
     }
   };
 
   return (
     <>
       {view === "menu" && <Menu onButtonClick={handleButtonClick} />}{" "}
-      {view === "scores" && <Scores />}
+      {view === "scores" && <Scores onButtonClick={handleButtonClick} />}{" "}
     </>
   );
 }

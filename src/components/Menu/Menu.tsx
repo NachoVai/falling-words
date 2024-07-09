@@ -7,7 +7,9 @@ type MenuProps = {
   onButtonClick: (buttonName: string) => void;
 };
 
-function Menu({ onButtonClick }: MenuProps) {
+function Menu(props: MenuProps) {
+  const { onButtonClick } = props;
+
   return (
     <>
       <div className="container mt-5" id="menu">
