@@ -3,7 +3,11 @@ import CardBody from "../CardBody/CardBody";
 import Button from "../Button/Button";
 import "./menu.css";
 
-function Menu() {
+type MenuProps = {
+  onButtonClick: (buttonName: string) => void;
+};
+
+function Menu({ onButtonClick }: MenuProps) {
   return (
     <>
       <div className="container mt-5" id="menu">
@@ -13,8 +17,8 @@ function Menu() {
             description="A game to improve your tipying skills"
           />
           <div className="d-flex flex-column align-items-center">
-            <Button name="Start Game" />
-            <Button name="Scores" />
+            <Button name="Start Game" onClick={() => onButtonClick("Game")} />
+            <Button name="Scores" onClick={() => onButtonClick("Scores")} />
           </div>
         </Card>
       </div>

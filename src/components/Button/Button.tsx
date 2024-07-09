@@ -1,11 +1,12 @@
 import "./Button.css";
 
-type ButtonProps = { name: string };
+type ButtonProps = { name: string; onClick: () => void };
 
 function Button(props: ButtonProps) {
-  const { name } = props;
+  const { name, onClick } = props;
+
   return (
-    <button type="button" className="btn btn-lg">
+    <button type="button" className="btn btn-lg" onClick={onClick}>
       {name}
     </button>
   );
