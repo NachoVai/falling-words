@@ -1,0 +1,25 @@
+#table tr {
+    background-color: black !important;
+}
+
+.table>:not(caption)>*>* {
+    color: #00FF00 !important;
+    background-color: #000 !important;
+    border: none;
+}
+
+.table-container {
+    max-height: 240px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+}
