@@ -1,6 +1,6 @@
 function GameBoard() {
   return (
-    <div id="game-board" className="m-md-5">
+    <div id="game-board" className="m-md-4">
       <div className="board"></div>
     </div>
   );
