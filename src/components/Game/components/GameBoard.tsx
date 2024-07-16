@@ -1,35 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
-const words = ["apple", "banana", "cherry", "date", "elderberry"];
+import React, { useState } from "react";
+import "../game.css";
+import useFallingWords from "../../../hooks/useFallingWords";
+import GameHeader from "./GameHeader";
 
-const getRandomWord = () => {
-  return words[Math.floor(Math.random() * words.length)];
+type GameBoard = {
+  onButtonClick: (buttonName: string) => void;
 };
 
-const GameBoard: React.FC = () => {
-  const [fallingWords, setFallingWords] = useState<
-    { id: number; word: string; left: string; animationDuration: string }[]
-  >([]);
+function GameBoard(props: GameBoard) {
+  const { onButtonClick } = props;
+  const { fallingWords, removeWord, pauseGame, resumeGame, isPaused } =
+    useFallingWords();
   const [userInput, setUserInput] = useState("");
   const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(3);
-  const [isPaused, setIsPaused] = useState(false);
-  const wordIdRef = useRef(0);
-  const boardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      const newWord = {
-        id: wordIdRef.current++,
-        word: getRandomWord(),
-        left: `${Math.random() * 90}%`,
-        animationDuration: `${Math.random() * 5 + 5}s`,
-      };
-      setFallingWords((prevWords) => [...prevWords, newWord]);
-    }, 2000); // Crea una nueva palabra cada 2 segundos
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
+  console.log({ pauseGame });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -40,9 +25,7 @@ const GameBoard: React.FC = () => {
     );
     if (matchedWord) {
       setScore((prevScore) => prevScore + 100);
-      setFallingWords((prevWords) =>
-        prevWords.filter((word) => word.id !== matchedWord.id)
-      );
+      removeWord(matchedWord.id);
       setUserInput("");
     }
   };
@@ -50,50 +33,57 @@ const GameBoard: React.FC = () => {
   const loseLife = () => {
     setLifes((prevLifes) => prevLifes - 1);
     if (lifes <= 1) {
-      setIsPaused(true);
+      pauseGame();
       alert("Game Over!");
     }
   };
 
   const handleAnimationEnd = (id: number) => {
     if (!isPaused) {
-      setFallingWords((prevWords) =>
-        prevWords.filter((word) => word.id !== id)
-      );
+      removeWord(id);
       loseLife();
     }
   };
 
   return (
-    <div id="game-board" className="m-md-4" ref={boardRef}>
-      <div className="board">
-        <div id="life-score" className="m-2">
-          <span>
-            Lifes: {lifes} Score: {score.toString().padStart(4, "0")}
-          </span>
+    <>
+      <GameHeader
+        onButtonClick={onButtonClick}
+        pauseGame={pauseGame}
+        resumeGame={resumeGame}
+      />
+      <div id="game-board" className="m-md-4">
+        <div className="board">
+          <div id="life-score" className="m-2">
+            <span>
+              Lifes: {lifes} Score: {score.toString().padStart(4, "0")}
+            </span>
+          </div>
+          <div id="falling-words">
+            {fallingWords.map(
+              ({ id, word, left, animationDuration, animationPlayState }) => (
+                <div
+                  key={id}
+                  className="falling-word"
+                  style={{ left, animationDuration, animationPlayState }}
+                  onAnimationEnd={() => handleAnimationEnd(id)}
+                >
+                  {word}
+                </div>
+              )
+            )}
+          </div>
+          <input
+            type="text"
+            value={userInput}
+            onChange={handleInputChange}
+            placeholder="Type the falling word..."
+            className="user-input"
+          />
         </div>
-        <div id="falling-words">
-          {fallingWords.map(({ id, word, left, animationDuration }) => (
-            <div
-              key={id}
-              className="falling-word"
-              style={{ left, animationDuration }}
-              onAnimationEnd={() => handleAnimationEnd(id)}
-            >
-              {word}
-            </div>
-          ))}
-        </div>
-        <input
-          type="text"
-          value={userInput}
-          onChange={handleInputChange}
-          placeholder="Type the falling word..."
-          className="user-input"
-        />
       </div>
-    </div>
+    </>
   );
-};
+}
 
 export default GameBoard;
