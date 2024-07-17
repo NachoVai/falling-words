@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../game.css";
 import useFallingWords from "../../../hooks/useFallingWords";
 import GameHeader from "./GameHeader";
@@ -14,7 +14,6 @@ function GameBoard(props: GameBoard) {
   const [userInput, setUserInput] = useState("");
   const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(3);
-  console.log({ pauseGame });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -79,6 +78,7 @@ function GameBoard(props: GameBoard) {
             onChange={handleInputChange}
             placeholder="Type the falling word..."
             className="user-input"
+            id="user-input"
           />
         </div>
       </div>

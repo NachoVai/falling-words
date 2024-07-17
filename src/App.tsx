@@ -8,18 +8,11 @@ function App() {
 
   const handleButtonClick = (buttonName: string) => {
     if (buttonName === "Game") {
-      console.log("Game button clicked");
       setView("game");
     } else if (buttonName === "Scores") {
-      console.log("Scores button clicked");
       setView("scores");
     } else if (buttonName === "Menu") {
-      console.log("Menu button clicked");
       setView("menu");
-    } else if (buttonName === "Pause") {
-      console.log("Pause Game button clicked");
-    } else if (buttonName === "Play") {
-      console.log("Play Game button clicked");
     }
   };
 

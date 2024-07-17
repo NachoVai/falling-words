@@ -38,12 +38,15 @@ const useFallingWords = () => {
   }, [isPaused]);
 
   useEffect(() => {
+    const userInput = document.getElementById("user-input") as HTMLInputElement;
+
     setFallingWords((prevWords) =>
       prevWords.map((id) => ({
         ...id,
         animationPlayState: isPaused ? "paused" : "running",
       }))
     );
+    isPaused ? (userInput.disabled = true) : (userInput.disabled = false);
   }, [isPaused]);
 
   const removeWord = (id: number) => {
