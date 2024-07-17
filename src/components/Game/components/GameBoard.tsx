@@ -2,6 +2,7 @@ import useFallingWords from "../../../hooks/useFallingWords";
 import useScoreAndLives from "../../../hooks/useScoreAndLives";
 import useUserInput from "../../../hooks/useUserInput";
 import GameHeader from "./GameHeader";
+import FallingWords from "./FallingWords";
 import "../game.css";
 
 type GameBoard = {
@@ -45,18 +46,10 @@ function GameBoard(props: GameBoard) {
             </span>
           </div>
           <div id="falling-words">
-            {fallingWords.map(
-              ({ id, word, left, animationDuration, animationPlayState }) => (
-                <div
-                  key={id}
-                  className="falling-word"
-                  style={{ left, animationDuration, animationPlayState }}
-                  onAnimationEnd={() => handleAnimationEnd(id)}
-                >
-                  {word}
-                </div>
-              )
-            )}
+            <FallingWords
+              fallingWords={fallingWords}
+              onAnimationEnd={handleAnimationEnd}
+            />
           </div>
           <input
             type="text"
