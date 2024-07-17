@@ -1,3 +1,4 @@
+import { Modal, Button } from "react-bootstrap";
 import useFallingWords from "../../../hooks/useFallingWords";
 import useScoreAndLives from "../../../hooks/useScoreAndLives";
 import useUserInput from "../../../hooks/useUserInput";
