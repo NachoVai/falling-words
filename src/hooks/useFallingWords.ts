@@ -1,11 +1,22 @@
 import { useState, useEffect, useRef } from "react";
-const words = ["apple", "banana", "cherry", "date", "strawberry"];
+import usePauseGame from "./usePauseGame";
+const words = [
+  "apple",
+  "banana",
+  "cherry",
+  "date",
+  "strawberry",
+  "orange",
+  "melon",
+  "watermelon",
+  "peach",
+];
 
 const getRandomWord = () => {
   return words[Math.floor(Math.random() * words.length)];
 };
 
-type FallingWord = {
+export type FallingWord = {
   id: number;
   word: string;
   left: string;
@@ -30,24 +41,15 @@ const useFallingWords = () => {
         animationPlayState: "running",
       };
       setFallingWords((prevWords) => [...prevWords, newWord]);
-    }, 2000); // Crea una nueva palabra cada 2 segundos
+    }, 1800); // Crea una nueva palabra cada 2 segundos
 
     return () => {
       clearInterval(interval);
     };
   }, [isPaused]);
 
-  useEffect(() => {
-    const userInput = document.getElementById("user-input") as HTMLInputElement;
-
-    setFallingWords((prevWords) =>
-      prevWords.map((id) => ({
-        ...id,
-        animationPlayState: isPaused ? "paused" : "running",
-      }))
-    );
-    isPaused ? (userInput.disabled = true) : (userInput.disabled = false);
-  }, [isPaused]);
+  // Hook para pausar y reanudar el juego
+  usePauseGame(isPaused, setFallingWords);
 
   const removeWord = (id: number) => {
     setFallingWords((prevWords) => prevWords.filter((word) => word.id !== id));
