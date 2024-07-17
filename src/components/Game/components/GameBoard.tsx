@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../game.css";
 import useFallingWords from "../../../hooks/useFallingWords";
+import useScoreAndLives from "../../../hooks/useScoreAndLives";
 import GameHeader from "./GameHeader";
 
 type GameBoard = {
@@ -11,9 +12,8 @@ function GameBoard(props: GameBoard) {
   const { onButtonClick } = props;
   const { fallingWords, removeWord, pauseGame, resumeGame, isPaused } =
     useFallingWords();
+  const { score, lifes, increaseScore, decreaseLife } = useScoreAndLives();
   const [userInput, setUserInput] = useState("");
-  const [score, setScore] = useState(0);
-  const [lifes, setLifes] = useState(3);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -23,24 +23,20 @@ function GameBoard(props: GameBoard) {
       (word) => word.word.toLowerCase() === value.toLowerCase()
     );
     if (matchedWord) {
-      setScore((prevScore) => prevScore + 100);
+      increaseScore(100);
       removeWord(matchedWord.id);
       setUserInput("");
-    }
-  };
-
-  const loseLife = () => {
-    setLifes((prevLifes) => prevLifes - 1);
-    if (lifes <= 1) {
-      pauseGame();
-      alert("Game Over!");
     }
   };
 
   const handleAnimationEnd = (id: number) => {
     if (!isPaused) {
       removeWord(id);
-      loseLife();
+      decreaseLife();
+      if (lifes <= 1) {
+        pauseGame();
+        alert("Game Over!");
+      }
     }
   };
 

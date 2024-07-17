@@ -1,16 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import usePauseGame from "./usePauseGame";
-const words = [
-  "apple",
-  "banana",
-  "cherry",
-  "date",
-  "strawberry",
-  "orange",
-  "melon",
-  "watermelon",
-  "peach",
-];
+const words = ["apple"];
 
 const getRandomWord = () => {
   return words[Math.floor(Math.random() * words.length)];
