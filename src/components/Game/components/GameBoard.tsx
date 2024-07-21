@@ -55,30 +55,30 @@ function GameBoard(props: GameBoard) {
   const handleReset = () => {
     resetWords();
     resetScoreAndLives();
-    resumeGame();
+    // resumeGame();
   };
 
   return (
-    <>
+    <div>
       <GameHeader
         onButtonClick={onButtonClick}
         pauseGame={pauseGame}
         resumeGame={resumeGame}
         restartGame={handleReset}
       />
-      <div id="game-board" className="m-md-4">
-        <div className="board">
-          <div id="life-score" className="m-2">
+      <main id="game-board" className="m-md-4">
+        <section className="board">
+          <header id="life-score" className="m-2">
             <span>
               Lifes: {lifes} Score: {score.toString().padStart(4, "0")}
             </span>
-          </div>
-          <div id="falling-words">
+          </header>
+          <p id="falling-words">
             <FallingWords
               fallingWords={fallingWords}
               onAnimationEnd={handleAnimationEnd}
             />
-          </div>
+          </p>
           <input
             type="text"
             value={userInput}
@@ -86,8 +86,9 @@ function GameBoard(props: GameBoard) {
             placeholder="Type the falling word..."
             className="user-input mb-2"
             id="user-input"
+            aria-label="Type the falling word"
           />
-        </div>
+        </section>
         {/* Modal */}
         <Modal
           show={showModal}
@@ -108,6 +109,7 @@ function GameBoard(props: GameBoard) {
               placeholder="Enter nickname"
               className="user-score-input mt-4"
               id="user-score-input"
+              aria-label="Enter nickname"
             />
           </Modal.Body>
           <Modal.Footer>
@@ -125,8 +127,8 @@ function GameBoard(props: GameBoard) {
             </Button>
           </Modal.Footer>
         </Modal>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }
 

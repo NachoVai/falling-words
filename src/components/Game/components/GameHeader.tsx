@@ -25,20 +25,18 @@ function GameHeader(props: GameHeaderProps) {
   };
 
   return (
-    <div className="container gap-2">
-      <div className="col col-auto">
-        <h1>Falling Words</h1>
+    <header className="container gap-2">
+      <div className="w-100 align-items-center">
+        <div className="col col-auto">
+          <h1>Falling Words</h1>
+        </div>
+        <nav className="d-flex">
+          <Button name="Menu" onClick={() => onButtonClick("Menu")} />
+          <Button name={playStopBtn} onClick={handlePlayPauseClick} />
+          <Button name="Restart" onClick={restartGame} />
+        </nav>
       </div>
-      <div className="col col-auto">
-        <Button name="Menu" onClick={() => onButtonClick("Menu")} />
-      </div>
-      <div className="col col-auto">
-        <Button name={playStopBtn} onClick={handlePlayPauseClick} />
-      </div>
-      <div className="col col-auto">
-        <Button name="Restart" onClick={restartGame} />
-      </div>
-    </div>
+    </header>
   );
 }
 

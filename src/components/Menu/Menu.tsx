@@ -12,18 +12,20 @@ function Menu(props: MenuProps) {
 
   return (
     <>
-      <div className="container mt-5" id="menu">
+      <section className="container mt-5" id="menu">
         <Card>
-          <CardBody
-            title="Falling Words"
-            description="A game to improve your tipying skills"
-          />
-          <div className="d-flex flex-column align-items-center">
+          <header>
+            <CardBody
+              title="Falling Words"
+              description="A game to improve your tipying skills"
+            />
+          </header>
+          <nav className="d-flex flex-column align-items-center">
             <Button name="Start Game" onClick={() => onButtonClick("Game")} />
             <Button name="Scores" onClick={() => onButtonClick("Scores")} />
-          </div>
+          </nav>
         </Card>
-      </div>
+      </section>
     </>
   );
 }

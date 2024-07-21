@@ -12,16 +12,18 @@ function Scores(props: ScoresProps) {
   const { onButtonClick } = props;
 
   return (
-    <div className="container mt-5" id="highscores">
+    <section className="container mt-5" id="highscores">
       <Card>
-        <CardBody title="High Scores" description="Falling Words" />
+        <header>
+          <CardBody title="High Scores" description="Falling Words" />
+        </header>
         <Table />
-        <div className="d-flex flex-column align-items-center">
+        <nav className="d-flex flex-column align-items-center">
           <Button name="Start Game" onClick={() => onButtonClick("Game")} />
           <Button name="Menu" onClick={() => onButtonClick("Menu")} />
-        </div>
+        </nav>
       </Card>
-    </div>
+    </section>
   );
 }
 

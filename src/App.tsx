@@ -17,12 +17,12 @@ function App() {
   };
 
   return (
-    <>
+    <main>
       {view === "menu" && <Menu onButtonClick={handleButtonClick} />}{" "}
       {view === "scores" && <Scores onButtonClick={handleButtonClick} />}{" "}
       {view === "game" && <Game onButtonClick={handleButtonClick} />}{" "}
       {/* <span>Nvai</span> */}
-    </>
+    </main>
   );
 }
 

@@ -8,9 +8,9 @@ type GameProps = {
 function Game(props: GameProps) {
   const { onButtonClick } = props;
   return (
-    <div className="container-fluid mt-4">
+    <section className="container-fluid mt-4">
       <GameBoard onButtonClick={onButtonClick} />
-    </div>
+    </section>
   );
 }
 
