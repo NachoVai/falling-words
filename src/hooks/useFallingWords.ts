@@ -56,10 +56,22 @@ const useFallingWords = () => {
     setFallingWords((prevWords) => prevWords.filter((word) => word.id !== id));
   };
 
+  const resetWords = () => {
+    setFallingWords([]);
+    wordIdRef.current = 0;
+  };
+
   const pauseGame = () => setIsPaused(true);
   const resumeGame = () => setIsPaused(false);
 
-  return { fallingWords, removeWord, pauseGame, resumeGame, isPaused };
+  return {
+    fallingWords,
+    removeWord,
+    pauseGame,
+    resumeGame,
+    resetWords,
+    isPaused,
+  };
 };
 
 export default useFallingWords;

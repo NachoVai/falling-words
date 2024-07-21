@@ -8,7 +8,12 @@ const useScoreAndLives = () => {
     setScore((prevScore) => prevScore + amount);
   const decreaseLife = () => setLifes((prevLifes) => prevLifes - 1);
 
-  return { score, lifes, increaseScore, decreaseLife };
+  const resetScoreAndLives = () => {
+    setScore(0);
+    setLifes(3);
+  };
+
+  return { score, lifes, increaseScore, decreaseLife, resetScoreAndLives };
 };
 
 export default useScoreAndLives;

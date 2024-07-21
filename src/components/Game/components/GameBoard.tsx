@@ -13,9 +13,16 @@ type GameBoard = {
 
 function GameBoard(props: GameBoard) {
   const { onButtonClick } = props;
-  const { fallingWords, removeWord, pauseGame, resumeGame, isPaused } =
-    useFallingWords();
-  const { score, lifes, increaseScore, decreaseLife } = useScoreAndLives();
+  const {
+    fallingWords,
+    removeWord,
+    pauseGame,
+    resumeGame,
+    resetWords,
+    isPaused,
+  } = useFallingWords();
+  const { score, lifes, increaseScore, decreaseLife, resetScoreAndLives } =
+    useScoreAndLives();
   const { userInput, handleInputChange } = useUserInput(
     fallingWords,
     removeWord,
@@ -27,10 +34,11 @@ function GameBoard(props: GameBoard) {
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
-  const handleAnimationEnd = (id: number) => {
+  const handleAnimationEnd = () => {
     if (!isPaused) {
-      removeWord(id);
       decreaseLife();
+      alert("Haz perdido una vida");
+      resetWords();
       if (lifes <= 1) {
         pauseGame();
         handleShowModal();
@@ -44,12 +52,19 @@ function GameBoard(props: GameBoard) {
     // Aquí puedes agregar lógica adicional para manejar el guardado del nombre y el puntaje
   };
 
+  const handleReset = () => {
+    resetWords();
+    resetScoreAndLives();
+    resumeGame();
+  };
+
   return (
     <>
       <GameHeader
         onButtonClick={onButtonClick}
         pauseGame={pauseGame}
         resumeGame={resumeGame}
+        restartGame={handleReset}
       />
       <div id="game-board" className="m-md-4">
         <div className="board">
@@ -103,7 +118,7 @@ function GameBoard(props: GameBoard) {
               variant="primary"
               onClick={() => {
                 handleCloseModal();
-                resumeGame();
+                handleReset();
               }}
             >
               Restart
