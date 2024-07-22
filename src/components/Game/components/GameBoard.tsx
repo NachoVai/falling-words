@@ -2,7 +2,9 @@ import { Modal, Button } from "react-bootstrap";
 import useFallingWords from "../../../hooks/useFallingWords";
 import useScoreAndLives from "../../../hooks/useScoreAndLives";
 import useUserInput from "../../../hooks/useUserInput";
+import useSubmitScore from "../../../hooks/useSubmitScore";
 import GameHeader from "./GameHeader";
+import Scores from "../../Scores/Scores";
 import FallingWords from "./FallingWords";
 import "../game.css";
 import { useState } from "react";
@@ -28,8 +30,9 @@ function GameBoard(props: GameBoard) {
     removeWord,
     increaseScore
   );
+  const { submitScore, loading, error } = useSubmitScore();
   const [showModal, setShowModal] = useState(false);
-  const [nickname, setNickname] = useState("");
+  const [name, setname] = useState("");
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -46,16 +49,22 @@ function GameBoard(props: GameBoard) {
     }
   };
 
-  const handleSave = () => {
-    console.log("Nickname:", nickname);
-    console.log("Final Score:", score);
-    // Aquí puedes agregar lógica adicional para manejar el guardado del nombre y el puntaje
-  };
-
   const handleReset = () => {
     resetWords();
     resetScoreAndLives();
     // resumeGame();
+  };
+
+  const handleSubmit = () => {
+    const trimmedName = name.trim();
+
+    if (trimmedName === "" || trimmedName === null) {
+      return alert("Debes ingresar un nickname válido");
+    }
+
+    console.log("name:", trimmedName);
+    console.log("Final Score:", score);
+    submitScore({ name: trimmedName, score });
   };
 
   return (
@@ -73,12 +82,12 @@ function GameBoard(props: GameBoard) {
               Lifes: {lifes} Score: {score.toString().padStart(4, "0")}
             </span>
           </header>
-          <p id="falling-words">
+          <div id="falling-words">
             <FallingWords
               fallingWords={fallingWords}
               onAnimationEnd={handleAnimationEnd}
             />
-          </p>
+          </div>
           <input
             type="text"
             value={userInput}
@@ -104,17 +113,22 @@ function GameBoard(props: GameBoard) {
             again <br />
             <input
               type="text"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              value={name}
+              onChange={(e) => setname(e.target.value)}
               placeholder="Enter nickname"
-              className="user-score-input mt-4"
+              className="user-score-input mt-3"
               id="user-score-input"
-              aria-label="Enter nickname"
+              aria-label="Enter name"
+              required
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleSave}>
-              Save
+            <Button
+              variant="secondary"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit Score"}
             </Button>
             <Button
               variant="primary"
@@ -124,6 +138,17 @@ function GameBoard(props: GameBoard) {
               }}
             >
               Restart
+            </Button>
+            {error && <p>Error: {error}</p>}
+            <Button
+              variant="terciary"
+              onClick={() => {
+                handleCloseModal();
+
+                <Scores onButtonClick={onButtonClick} />;
+              }}
+            >
+              Scores
             </Button>
           </Modal.Footer>
         </Modal>

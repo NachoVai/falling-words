@@ -83,6 +83,8 @@
 /* Modal Game OVer */
 .modal {
     background-color: #000;
+    --bs-modal-header-border-width: none !important;
+    --bs-modal-footer-border-width: none !important;
 }
 
 .modal-content {
@@ -98,6 +100,11 @@
 
 .modal-body {
     text-align: center;
+}
+
+
+.modal-footer {
+    justify-content: center;
 }
 
 .user-score-input {
