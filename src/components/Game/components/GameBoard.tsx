@@ -62,7 +62,7 @@ function GameBoard(props: GameBoard) {
       return alert("Debes ingresar un nickname válido");
     }
 
-    console.log("name:", trimmedName);
+    console.log("nickname:", trimmedName);
     console.log("Final Score:", score);
     submitScore({ name: trimmedName, score });
   };
