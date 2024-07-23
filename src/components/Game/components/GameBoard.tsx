@@ -108,16 +108,18 @@ function GameBoard(props: GameBoard) {
           <Modal.Header>
             <Modal.Title>Game Over</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="pt-4">
-            Please enter your nickname to save your score or restart to try
-            again <br />
+          <Modal.Body>
+            <header>
+              Please enter your nickname to save your score or restart to try
+              again
+            </header>
             <input
               type="text"
               value={name}
               onChange={(e) => setname(e.target.value)}
               placeholder="Enter nickname"
-              className="user-score-input mt-3"
-              id="user-score-input"
+              className="user-nickname-input mt-2"
+              id="user-nickname-input"
               aria-label="Enter name"
               required
             />
@@ -127,11 +129,13 @@ function GameBoard(props: GameBoard) {
               variant="secondary"
               onClick={handleSubmit}
               disabled={loading}
+              className="btn btn-lg mt-4"
             >
               {loading ? "Submitting..." : "Submit Score"}
             </Button>
             <Button
               variant="primary"
+              className="btn btn-lg"
               onClick={() => {
                 handleCloseModal();
                 handleReset();
@@ -139,9 +143,9 @@ function GameBoard(props: GameBoard) {
             >
               Restart
             </Button>
-            {error && <p>Error: {error}</p>}
             <Button
               variant="terciary"
+              className="btn btn-lg"
               onClick={() => {
                 handleCloseModal();
 
@@ -150,6 +154,7 @@ function GameBoard(props: GameBoard) {
             >
               Scores
             </Button>
+            {error && <p>Error en el servidor: {error}</p>}
           </Modal.Footer>
         </Modal>
       </main>

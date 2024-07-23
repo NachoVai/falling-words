@@ -38,7 +38,7 @@ const useFallingWords = () => {
         id: wordIdRef.current++,
         word: getRandomWord(),
         left: `${Math.random() * 90}%`,
-        animationDuration: `${Math.random() * 5 + 5}s`,
+        animationDuration: `${Math.random() * 4 + 4}s`,
         animationPlayState: "running",
       };
       setFallingWords((prevWords) => [...prevWords, newWord]);

@@ -94,8 +94,10 @@
     margin-bottom: 200px;
 }
 
-.modal-title {
-    text-align: center;
+.modal-header {
+    text-align: center !important;
+    display: block;
+
 }
 
 .modal-body {
@@ -104,19 +106,24 @@
 
 
 .modal-footer {
-    justify-content: center;
+    justify-content: center !important;
 }
 
-.user-score-input {
+
+.modal-footer button {
+    justify-content: center !important;
+}
+
+.user-nickname-input {
     position: absolute;
     left: 50%;
     width: 60%;
     transform: translateX(-50%);
-    padding: 10px;
+    padding: 8px;
     font-size: 18px;
     border: 2px solid #00FF00;
     background-color: #000;
     color: #00FF00;
     outline: none;
-    box-shadow: 0 0 10px #00FF00;
+    /* box-shadow: 0 0 10px #00FF00; */
 }
