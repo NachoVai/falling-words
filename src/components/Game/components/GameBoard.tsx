@@ -88,6 +88,7 @@ function GameBoard(props: GameBoard) {
             closeModal={handleCloseModal}
             score={score}
             reset={handleReset}
+            onButtonClick={onButtonClick}
           />
         </section>
       </main>

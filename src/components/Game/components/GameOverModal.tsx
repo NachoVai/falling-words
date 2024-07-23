@@ -7,9 +7,10 @@ type GameOverBoardModalProps = {
   closeModal: () => void;
   score: number;
   reset: () => void;
+  onButtonClick: (buttonName: string) => void;
 };
 function GameOverModal(props: GameOverBoardModalProps) {
-  const { showModal, closeModal, score, reset } = props;
+  const { showModal, closeModal, score, reset, onButtonClick } = props;
   const [name, setname] = useState("");
   const { submitScore, loading, error } = useSubmitScore();
 
@@ -23,6 +24,8 @@ function GameOverModal(props: GameOverBoardModalProps) {
     console.log("nickname:", trimmedName);
     console.log("Final Score:", score);
     submitScore({ name: trimmedName, score });
+    reset();
+    closeModal();
   };
 
   return (
@@ -68,15 +71,16 @@ function GameOverModal(props: GameOverBoardModalProps) {
         >
           Restart
         </Button>
-        {/* <Button
-              variant="terciary"
-              className="btn btn-lg"
-              onClick={() => {
-                handleCloseModal();
-              }}
-            >
-              Scores
-            </Button> */}
+        <Button
+          variant="terciary"
+          className="btn btn-lg"
+          onClick={() => {
+            onButtonClick("Scores");
+            closeModal();
+          }}
+        >
+          Scores
+        </Button>
         {error && <p>Error en el servidor: {error}</p>}
       </Modal.Footer>
     </Modal>
