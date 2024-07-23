@@ -1,21 +1,6 @@
 // useGetRandomWord.ts
 import { useState, useEffect, useCallback } from "react";
-const words = [
-  "sandia",
-  "mora",
-  "frutilla",
-  "durazno",
-  "manzana",
-  "pera",
-  "melon",
-  "platano",
-  "pepino",
-  "naranja",
-];
-
-const getRandomWord = () => {
-  return words[Math.floor(Math.random() * words.length)];
-};
+import { getRandomWord } from "./useFirstRandomWord";
 const getRandomNumber = (): number => {
   return Math.floor(Math.random() * 6) + 4;
 };

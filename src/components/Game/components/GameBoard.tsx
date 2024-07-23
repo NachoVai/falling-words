@@ -1,10 +1,8 @@
-import { Modal, Button } from "react-bootstrap";
 import useFallingWords from "../../../hooks/useFallingWords";
 import useScoreAndLives from "../../../hooks/useScoreAndLives";
 import useUserInput from "../../../hooks/useUserInput";
-import useSubmitScore from "../../../hooks/useSubmitScore";
 import GameHeader from "./GameHeader";
-import Scores from "../../Scores/Scores";
+import GameOverModal from "./GameOverModal";
 import FallingWords from "./FallingWords";
 import "../game.css";
 import { useState } from "react";
@@ -30,9 +28,7 @@ function GameBoard(props: GameBoard) {
     removeWord,
     increaseScore
   );
-  const { submitScore, loading, error } = useSubmitScore();
   const [showModal, setShowModal] = useState(false);
-  const [name, setname] = useState("");
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -53,18 +49,6 @@ function GameBoard(props: GameBoard) {
     resetWords();
     resetScoreAndLives();
     // resumeGame();
-  };
-
-  const handleSubmit = () => {
-    const trimmedName = name.trim();
-
-    if (trimmedName === "" || trimmedName === null) {
-      return alert("Debes ingresar un nickname válido");
-    }
-
-    console.log("nickname:", trimmedName);
-    console.log("Final Score:", score);
-    submitScore({ name: trimmedName, score });
   };
 
   return (
@@ -98,65 +82,14 @@ function GameBoard(props: GameBoard) {
             aria-label="Type the falling word"
           />
         </section>
-        {/* Modal */}
-        <Modal
-          show={showModal}
-          onHide={handleCloseModal}
-          backdrop="static"
-          centered
-        >
-          <Modal.Header>
-            <Modal.Title>Game Over</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <header>
-              Please enter your nickname to save your score or restart to try
-              again
-            </header>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-              placeholder="Enter nickname"
-              className="user-nickname-input mt-2"
-              id="user-nickname-input"
-              aria-label="Enter name"
-              required
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={handleSubmit}
-              disabled={loading}
-              className="btn btn-lg mt-4"
-            >
-              {loading ? "Submitting..." : "Submit Score"}
-            </Button>
-            <Button
-              variant="primary"
-              className="btn btn-lg"
-              onClick={() => {
-                handleCloseModal();
-                handleReset();
-              }}
-            >
-              Restart
-            </Button>
-            <Button
-              variant="terciary"
-              className="btn btn-lg"
-              onClick={() => {
-                handleCloseModal();
-
-                <Scores onButtonClick={onButtonClick} />;
-              }}
-            >
-              Scores
-            </Button>
-            {error && <p>Error en el servidor: {error}</p>}
-          </Modal.Footer>
-        </Modal>
+        <section>
+          <GameOverModal
+            showModal={showModal}
+            closeModal={handleCloseModal}
+            score={score}
+            reset={handleReset}
+          />
+        </section>
       </main>
     </div>
   );
