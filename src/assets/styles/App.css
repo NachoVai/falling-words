@@ -1,6 +1,15 @@
 body {
+    min-height: 100vh !important;
     font-family: 'Courier New', Courier, monospace !important;
     background-color: #000 !important;
     color: #00FF00 !important;
     margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+
+.footer {
+    margin-top: auto;
+    text-align: center;
 }

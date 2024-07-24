@@ -90,13 +90,14 @@
 .modal-content {
     background-color: #000 !important;
     border-color: #00FF00 !important;
-    height: 40vh;
+    height: 50vh;
     margin-bottom: 200px;
 }
 
 .modal-header {
     text-align: center !important;
-    display: block;
+    display: block !important;
+    margin-top: 10px;
 
 }
 

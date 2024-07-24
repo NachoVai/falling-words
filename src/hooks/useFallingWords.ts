@@ -32,7 +32,7 @@ const useFallingWords = () => {
       };
       setFallingWords((prevWords) => [...prevWords, newWord]);
       setWord(randomWord);
-    }, 1800); // Crea una nueva palabra cada 2 segundos
+    }, 1800); // Cae una nueva palabra cada 2 segundos
 
     return () => {
       clearInterval(interval);
