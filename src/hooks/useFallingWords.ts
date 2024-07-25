@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import usePauseGame from "./usePauseGame";
 import useGetRandomWord from "./useGetRandomWord";
 
@@ -14,30 +14,34 @@ const useFallingWords = () => {
   const [fallingWords, setFallingWords] = useState<FallingWord[]>([]);
   const [isPaused, setIsPaused] = useState(true);
   const wordIdRef = useRef(0);
-  const { randomWord, fetchRandomWord } = useGetRandomWord();
-  const [word, setWord] = useState(randomWord);
+  const { words, loading, error } = useGetRandomWord();
+
+  const getRandomWord = useCallback(() => {
+    if (words.length > 0) {
+      return words[Math.floor(Math.random() * words.length)];
+    }
+    return "loading...";
+  }, [words]);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || loading) return;
+    console.log(words);
 
     const interval = setInterval(() => {
-      fetchRandomWord();
-      setWord(randomWord);
       const newWord = {
         id: wordIdRef.current++,
-        word: word,
+        word: getRandomWord(),
         left: `${Math.random() * 90}%`,
         animationDuration: `${Math.random() * 4 + 4}s`,
         animationPlayState: "running",
       };
       setFallingWords((prevWords) => [...prevWords, newWord]);
-      setWord(randomWord);
-    }, 1800); // Cae una nueva palabra cada 2 segundos
+    }, 2100); // Crea una nueva palabra cada 2 segundos
 
     return () => {
       clearInterval(interval);
     };
-  }, [isPaused, randomWord, word, fetchRandomWord]);
+  }, [isPaused, loading, getRandomWord, words]);
 
   // Hook para pausar y reanudar el juego
   usePauseGame(isPaused, setFallingWords);
@@ -61,6 +65,8 @@ const useFallingWords = () => {
     resumeGame,
     resetWords,
     isPaused,
+    loading,
+    error,
   };
 };
 

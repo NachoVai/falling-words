@@ -10,7 +10,7 @@ const useUserInput = (
 
   useEffect(() => {
     const matchedWord = fallingWords.find(
-      (word) => word.word.toLowerCase() === userInput.toLowerCase()
+      (word) => word.word === userInput.toLowerCase()
     );
     if (matchedWord) {
       increaseScore(100);

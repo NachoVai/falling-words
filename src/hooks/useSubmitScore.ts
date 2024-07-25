@@ -17,6 +17,7 @@ const useSubmitScore = () => {
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("mode", "no-cors");
 
     const raw = JSON.stringify({
       score: scoreData,
