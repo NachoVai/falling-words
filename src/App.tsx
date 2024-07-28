@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../src/assets/styles/App.css";
 import Menu from "./components/Menu/Menu";
 import Scores from "./components/Scores/Scores";
-// import Game from "./components/Game/Game";
+import BackgroundMusic from "./components/BackgroundMusic";
 import GameBoard from "./components/Game/components/GameBoard";
 import Footer from "./components/Footer/Footer";
 function App() {
@@ -26,6 +26,7 @@ function App() {
         {view === "game" && <GameBoard onButtonClick={handleButtonClick} />}
       </main>
       <Footer />
+      <BackgroundMusic view={view} />
     </>
   );
 }

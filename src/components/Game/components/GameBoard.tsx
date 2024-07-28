@@ -37,6 +37,7 @@ function GameBoard(props: GameBoard) {
     if (!isPaused) {
       decreaseLife();
       alert("Haz perdido una vida");
+      clearInput();
       resetWords();
       if (lifes <= 1) {
         pauseGame();
