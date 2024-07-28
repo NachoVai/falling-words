@@ -11,7 +11,6 @@ type GameHeaderProps = {
 function GameHeader(props: GameHeaderProps) {
   const { onButtonClick, pauseGame, resumeGame, restartGame } = props;
   const [playStopBtn, setPlayStopBtn] = useState("Start");
-
   const handlePlayPauseClick = () => {
     if (playStopBtn === "Pause") {
       onButtonClick("Pause");

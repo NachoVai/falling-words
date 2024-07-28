@@ -66,6 +66,7 @@ function GameOverModal(props: GameOverBoardModalProps) {
           className="btn btn-lg"
           onClick={() => {
             closeModal();
+            onButtonClick("Start");
             reset();
           }}
         >

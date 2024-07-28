@@ -16,6 +16,8 @@ const usePauseGame = (
 
     if (userInput) {
       userInput.disabled = isPaused;
+      userInput.value = "";
+      userInput.focus();
     }
   }, [isPaused, setFallingWords]);
 };
