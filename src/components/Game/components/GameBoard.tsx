@@ -23,7 +23,7 @@ function GameBoard(props: GameBoard) {
   } = useFallingWords();
   const { score, lifes, increaseScore, decreaseLife, resetScoreAndLives } =
     useScoreAndLives();
-  const { userInput, handleInputChange } = useUserInput(
+  const { userInput, handleInputChange, clearInput } = useUserInput(
     fallingWords,
     removeWord,
     increaseScore
@@ -48,6 +48,7 @@ function GameBoard(props: GameBoard) {
   const handleReset = () => {
     resetWords();
     resetScoreAndLives();
+    clearInput();
     // resumeGame();
   };
 

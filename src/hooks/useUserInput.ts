@@ -23,7 +23,10 @@ const useUserInput = (
     setUserInput(e.target.value);
   };
 
-  return { userInput, handleInputChange };
+  const clearInput = () => {
+    setUserInput("");
+  };
+  return { userInput, handleInputChange, clearInput };
 };
 
 export default useUserInput;

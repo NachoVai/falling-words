@@ -1,25 +1,27 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { FallingWord } from "./useFallingWords";
 const usePauseGame = (
   isPaused: boolean,
   setFallingWords: React.Dispatch<React.SetStateAction<FallingWord[]>>
 ) => {
+  const userInput = document.getElementById("user-input") as HTMLInputElement;
+  const handleUserInput = useCallback(() => {
+    if (userInput) {
+      userInput.disabled = isPaused;
+      userInput.focus();
+    }
+  }, [userInput, isPaused]);
   useEffect(() => {
-    const userInput = document.getElementById("user-input") as HTMLInputElement;
-
     setFallingWords((prevWords) =>
       prevWords.map((word) => ({
         ...word,
         animationPlayState: isPaused ? "paused" : "running",
       }))
     );
+    handleUserInput();
+  }, [isPaused, setFallingWords, handleUserInput]);
 
-    if (userInput) {
-      userInput.disabled = isPaused;
-      userInput.value = "";
-      userInput.focus();
-    }
-  }, [isPaused, setFallingWords]);
+  return { handleUserInput };
 };
 
 export default usePauseGame;
