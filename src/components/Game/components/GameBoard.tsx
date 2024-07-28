@@ -29,7 +29,7 @@ function GameBoard(props: GameBoard) {
     increaseScore
   );
   const [showModal, setShowModal] = useState(false);
-
+  const [playStopBtn, setPlayStopBtn] = useState("Start");
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
@@ -41,6 +41,7 @@ function GameBoard(props: GameBoard) {
       if (lifes <= 1) {
         pauseGame();
         handleShowModal();
+        setPlayStopBtn("Start");
       }
     }
   };
@@ -49,7 +50,6 @@ function GameBoard(props: GameBoard) {
     resetWords();
     resetScoreAndLives();
     clearInput();
-    // resumeGame();
   };
 
   return (
@@ -59,6 +59,8 @@ function GameBoard(props: GameBoard) {
         pauseGame={pauseGame}
         resumeGame={resumeGame}
         restartGame={handleReset}
+        playStopBtn={playStopBtn}
+        setPlayStopBtn={setPlayStopBtn}
       />
       <main id="game-board" className="m-md-4">
         <section className="board">

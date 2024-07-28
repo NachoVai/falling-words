@@ -7,6 +7,7 @@ const useUserInput = (
   increaseScore: (amount: number) => void
 ) => {
   const [userInput, setUserInput] = useState("");
+  const userInputt = document.getElementById("user-input") as HTMLInputElement;
 
   useEffect(() => {
     const matchedWord = fallingWords.find(
@@ -25,6 +26,7 @@ const useUserInput = (
 
   const clearInput = () => {
     setUserInput("");
+    userInputt.focus();
   };
   return { userInput, handleInputChange, clearInput };
 };

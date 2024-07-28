@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const useScoreAndLives = () => {
   const [score, setScore] = useState(0);
-  const [lifes, setLifes] = useState(3);
+  const [lifes, setLifes] = useState(1);
 
   const increaseScore = (amount: number) =>
     setScore((prevScore) => prevScore + amount);
@@ -10,7 +10,7 @@ const useScoreAndLives = () => {
 
   const resetScoreAndLives = () => {
     setScore(0);
-    setLifes(3);
+    setLifes(1);
   };
 
   return { score, lifes, increaseScore, decreaseLife, resetScoreAndLives };

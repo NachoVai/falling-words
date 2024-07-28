@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "../../Button/Button";
 
 type GameHeaderProps = {
@@ -6,11 +5,20 @@ type GameHeaderProps = {
   pauseGame: () => void;
   resumeGame: () => void;
   restartGame: () => void;
+  playStopBtn: string;
+  setPlayStopBtn: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function GameHeader(props: GameHeaderProps) {
-  const { onButtonClick, pauseGame, resumeGame, restartGame } = props;
-  const [playStopBtn, setPlayStopBtn] = useState("Start");
+  const {
+    onButtonClick,
+    pauseGame,
+    resumeGame,
+    restartGame,
+    playStopBtn,
+    setPlayStopBtn,
+  } = props;
+
   const handlePlayPauseClick = () => {
     if (playStopBtn === "Pause") {
       onButtonClick("Pause");
