@@ -1,6 +1,6 @@
 body {
     min-height: 100vh !important;
-    font-family: 'Courier New', Courier, monospace !important;
+    font-family: 'Kode Mono', monospace !important;
     background-color: #000 !important;
     color: #00FF00 !important;
     margin: 0 !important;
@@ -8,6 +8,14 @@ body {
     flex-direction: column !important;
 }
 
+@font-face {
+    font-family: 'Kode Mono';
+    src: url();
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-display: swap;
+    font-style: normal;
+}
 
 .footer {
     margin-top: auto;
