@@ -13,7 +13,7 @@ const useScores = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/scores")
+    fetch("https://fw-score-api.fly.dev/scores")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);

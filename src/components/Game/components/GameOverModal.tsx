@@ -25,7 +25,7 @@ function GameOverModal(props: GameOverBoardModalProps) {
     console.log("Final Score:", score);
     submitScore({ name: trimmedName, score });
     reset();
-    // closeModal();
+    closeModal();
   };
 
   return (

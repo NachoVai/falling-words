@@ -31,7 +31,7 @@ const useSubmitScore = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/scores",
+        "https://fw-score-api.fly.dev/scores",
         requestOptions
       );
 
