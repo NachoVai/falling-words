@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../src/assets/styles/App.css";
 import Menu from "./components/Menu/Menu";
 import Scores from "./components/Scores/Scores";
-import BackgroundMusic from "./components/BackgroundMusic";
+import BackgroundMusic from "../src/components/BackgroundMusic/BackgroundMusic";
 import GameBoard from "./components/Game/components/GameBoard";
 import Footer from "./components/Footer/Footer";
 function App() {
@@ -21,12 +21,12 @@ function App() {
   return (
     <>
       <main>
-        {view === "menu" && <Menu onButtonClick={handleButtonClick} />}{" "}
-        {view === "scores" && <Scores onButtonClick={handleButtonClick} />}{" "}
+        <BackgroundMusic view={view} />
+        {view === "menu" && <Menu onButtonClick={handleButtonClick} />}
+        {view === "scores" && <Scores onButtonClick={handleButtonClick} />}
         {view === "game" && <GameBoard onButtonClick={handleButtonClick} />}
       </main>
       <Footer />
-      <BackgroundMusic view={view} />
     </>
   );
 }

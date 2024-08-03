@@ -1,0 +1,15 @@
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #000;
+    margin-left: 5px;
+}
+
+#volume-control {
+    width: 100px;
+}
+
+label {
+    font-size: 14px;
+}
