@@ -15,7 +15,10 @@ function Scores(props: ScoresProps) {
     <section className="container mt-5" id="highscores">
       <Card>
         <header>
-          <CardBody title="High Scores" description="Falling Words" />
+          <CardBody
+            title="High-Scores"
+            description="Falling Words highscores"
+          />
         </header>
         <Table />
         <nav className="d-flex flex-column align-items-center">

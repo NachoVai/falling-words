@@ -35,7 +35,7 @@ function GameHeader(props: GameHeaderProps) {
     <header className="container gap-2">
       <div className="w-100 align-items-center">
         <div className="col col-auto">
-          <h1 className="mt-2">Falling Words</h1>
+          <h1 className="mt-2 title">Falling Words</h1>
         </div>
         <nav className="d-flex">
           <Button name="Menu" onClick={() => onButtonClick("Menu")} />

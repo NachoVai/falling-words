@@ -16,10 +16,11 @@ function Menu(props: MenuProps) {
         <Card>
           <header>
             <CardBody
-              title="Falling Words"
-              description="A game to improve your tipying skills"
+              title="Falling-Words"
+              description="A game to test your typing accuracy and speed"
             />
           </header>
+
           <nav className="d-flex flex-column align-items-center">
             <Button name="Start Game" onClick={() => onButtonClick("Game")} />
             <Button name="Scores" onClick={() => onButtonClick("Scores")} />
