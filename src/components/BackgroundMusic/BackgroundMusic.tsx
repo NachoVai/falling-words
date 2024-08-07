@@ -8,7 +8,7 @@ type BackgroundMusicProps = {
 function BackgroundMusic(props: BackgroundMusicProps) {
   const { view } = props;
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(0.3);
 
   useEffect(() => {
     const audioElement = audioRef.current;

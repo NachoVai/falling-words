@@ -1,13 +1,15 @@
 .card {
 	background-color: #000000c4 !important;
 	color: #00e600 !important;
-	border: 1px solid #0e730e !important;
-	border-radius: 5px;
+	border-radius: 15px !important;
 	padding: 10px;
 	margin: 10px;
 	width: 50vh;
 	min-height: 400px;
 	text-transform: uppercase;
+	letter-spacing: .2em;
+	box-shadow: 0 0 15px #00b100;
+
 }
 
 .card-title {
@@ -21,6 +23,7 @@
 	text-align: center;
 	letter-spacing: 0.1em;
 	animation: flicker 1s ease-in-out infinite alternate;
+	font-weight: bold;
 
 	&:hover {
 		color: #fff;
